@@ -1,1 +1,20 @@
 # syb-csharp
+
+I'm trying to implement in C# the "Scrap your boilerplate" [SYB] approach from Haskell 
+- https://www.microsoft.com/en-us/research/wp-content/uploads/2003/01/hmap.pdf
+- http://hackage.haskell.org/package/syb
+
+**I'm not sure this is possible to achieve** and there is a rather long [article doing the same thing for C++](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.472.5297&rep=rep1&type=pdf) so it might be to hard to do.
+
+The SYB approach is meant to avoid to write repetitive when dealing with complex data structures. The classical Paradise example as found in the cited article is roughly this scenario:
+There is a company with departments, subunits, manager and peoples and we want to rise the salary of each person.
+
+Most of the code for solving this problem is about traversing the data structure representing the company while the actual "solving the problem" code is just a multiplication. They propose to split the problem in three parts:
+1. Writing the actual code to solve the problem, this is manual and specific to the task at hand.
+2. Generate automatically some functions to traverse the data structure. This is the GMapT function that I wrote by hand but that could possibly be automated using roslyn.
+3. Write only once a library to support everything.
+
+I have a working example with several shortcomings:
+1. There are several cast, I wasn't able to make it work without it. Some are required by the approach, e.g. when lifting the function, some other are not present in the Haskell version. 
+2. I wrote all the code by hand, including the part that should be automatically generated.
+3. I wrote just one comninator
