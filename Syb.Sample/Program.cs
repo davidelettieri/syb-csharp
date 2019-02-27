@@ -4,12 +4,31 @@ using System.Linq;
 
 using static Syb.SybHelpers;
 using static Syb.SybCombinators;
+using Syb.Sample.v2;
 
 namespace Syb.Sample
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            //ParadiseExample();
+            V2Example();
+        }
+
+        private static void V2Example()
+        {
+            var grandchild = new Grandchild("Paolo");
+
+            var child = new Child(grandchild);
+            var parent = new Parent(child);
+
+            var lf = new LiftedFunction<Grandchild>(p => new Grandchild(p.Name + " Mais"));
+
+            var result = Comb.Everywhere(lf, parent);
+        }
+
+        private static void ParadiseExample()
         {
             // Build example company
             var company = Functions.BuildCompany();
