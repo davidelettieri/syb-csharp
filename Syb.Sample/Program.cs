@@ -1,8 +1,8 @@
 ﻿using Syb.Sample.ParadiseExample;
+using Syb.Sample.v2;
 using System;
 using System.Linq;
 using static Syb.Combinators;
-using Syb.Sample.v2;
 
 namespace Syb.Sample
 {

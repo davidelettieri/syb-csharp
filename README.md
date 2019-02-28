@@ -14,7 +14,15 @@ Most of the code for solving this problem is about traversing the data structure
 2. Generate automatically some functions to traverse the data structure. This is the GMapT function that I wrote by hand but that could possibly be automated using roslyn.
 3. Write only once a library to support everything.
 
-I have a working example with several shortcomings:
-1. There are several cast, I wasn't able to make it work without it. Some are required by the approach, e.g. when lifting the function, some other are not present in the Haskell version. 
+I have a working example with some shortcomings:
 2. I wrote all the code by hand, including the part that should be automatically generated.
-3. I wrote just one comninator
+3. I wrote just one combinator
+
+Most of the work is done in two generic classes MkT and EveryWhere, this approach follows the C++ article if I understood correctly:
+- MkT takes a Func<T,T> and allows to compute the function to any U even if U != T, in this case it just returns the argument value
+- EveryWhere is the class that contains the recursion logic
+
+Next steps:
+1. Write more combinators
+2. Write a roslyn refactor to automatically generate the GMap method
+3. Try to find a way to remove the runtime cast inside the Apply method of MkT class

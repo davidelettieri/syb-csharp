@@ -18,8 +18,6 @@ namespace Syb
             }
         }
 
-
-
         public static T Everywhere<T, U>(MkT<U> f, T t)
            where T : ITerm<T>
            where U : ITerm<U>
