@@ -12,7 +12,7 @@ namespace Syb.Sample.ParadiseExample
 
         public Address GMapT<A>(MkT<A> lf)
         {
-            return new Address(Value);
+            return this;
         }
     }
 }
