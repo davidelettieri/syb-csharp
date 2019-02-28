@@ -2,7 +2,7 @@
 
 namespace Syb.Sample.ParadiseExample
 {
-    class Address : ITerm
+    class Address : ITerm<Address>
     {
         public Address(string value)
         {
@@ -10,7 +10,7 @@ namespace Syb.Sample.ParadiseExample
         }
         public string Value { get; private set; }
 
-        public ITerm GMapT<U>(Func<ITerm, U> f) where U : ITerm
+        public Address GMapT<A>(MkT<A> lf)
         {
             return new Address(Value);
         }

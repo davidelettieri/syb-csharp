@@ -1,9 +1,7 @@
 ﻿using Syb.Sample.ParadiseExample;
 using System;
 using System.Linq;
-
-using static Syb.SybHelpers;
-using static Syb.SybCombinators;
+using static Syb.Combinators;
 using Syb.Sample.v2;
 
 namespace Syb.Sample
@@ -12,20 +10,20 @@ namespace Syb.Sample
     {
         static void Main(string[] args)
         {
-            //ParadiseExample();
+            ParadiseExample();
             V2Example();
         }
 
         private static void V2Example()
         {
-            var grandchild = new Grandchild("Paolo");
+            var grandchild = new Grandchild("Mario");
 
             var child = new Child(grandchild);
             var parent = new Parent(child);
 
-            var lf = new LiftedFunction<Grandchild>(p => new Grandchild(p.Name + " Mais"));
+            var lf = new MkT<Grandchild>(p => new Grandchild(p.Name + " Rossi"));
 
-            var result = Comb.Everywhere(lf, parent);
+            var result = Everywhere(lf, parent);
         }
 
         private static void ParadiseExample()
@@ -34,10 +32,10 @@ namespace Syb.Sample
             var company = Functions.BuildCompany();
 
             // Lift function, mkT in the original paper
-            var liftedIncrease = Lift<Salary>(p => Functions.Increase(0.1m, p));
+            var liftedIncrease = new MkT<Salary>(p => Functions.Increase(0.1m, p));
 
             // Apply the lifted function everywhere
-            var result = Everywhere(liftedIncrease, company) as Company;
+            var result = Everywhere(liftedIncrease, company);
 
             // Salary is increased, check only one to verify it
             var original = company.Departments

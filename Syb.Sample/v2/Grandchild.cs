@@ -13,7 +13,7 @@ namespace Syb.Sample.v2
             Name = name;
         }
 
-        public Grandchild GMapT<A>(LiftedFunction<A> lf)
+        public Grandchild GMapT<A>(MkT<A> lf)
         {
             return new Grandchild(Name);
         }

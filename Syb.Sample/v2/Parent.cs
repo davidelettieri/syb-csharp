@@ -13,7 +13,7 @@ namespace Syb.Sample.v2
             _child = child;
         }
 
-        public Parent GMapT<A>(LiftedFunction<A> lf)
+        public Parent GMapT<A>(MkT<A> lf)
         {
             return new Parent(lf.Apply(_child));
         }

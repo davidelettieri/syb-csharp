@@ -2,7 +2,7 @@
 
 namespace Syb.Sample.ParadiseExample
 {
-    class Name : ITerm
+    class Name : ITerm<Name>
     {
         public Name(string value)
         {
@@ -10,9 +10,9 @@ namespace Syb.Sample.ParadiseExample
         }
         public string Value { get; private set; }
 
-        public ITerm GMapT<U>(Func<ITerm, U> f) where U : ITerm
+        public Name GMapT<A>(MkT<A> lf)
         {
-            return new Name(Value);
+            return this;
         }
     }
 }
