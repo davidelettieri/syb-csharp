@@ -19,7 +19,15 @@ namespace Syb.Sample.ParadiseExample
             return new Company(new[] { strategy, research });
         }
 
+        /// <summary>
+        /// Referring to the original SYB paper, this function is the actual code that is solving the problem
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="salary"></param>
+        /// <returns></returns>
         public static Salary Increase(decimal value, Salary salary) => new Salary(salary.Value * (1 + value));
+
+        // All the functions below are considered boilerplate because we are traversing the company data structure
         public static Employee Increase(decimal value, Employee employee) => new Employee(Increase(value, employee.Salary), employee.Person);
         public static Manager Increase(decimal value, Manager employee) => new Manager(Increase(value, employee.Salary), employee.Person);
         public static Dept Increase(decimal value, Dept dept) => new Dept(dept.Name, Increase(value, dept.Manager), dept.Units.Select(p => Increase(value, p)).ToArray());

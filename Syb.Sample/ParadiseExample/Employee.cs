@@ -2,7 +2,7 @@
 
 namespace Syb.Sample.ParadiseExample
 {
-    class Employee : ITerm
+    class Employee : ITerm<Employee>
     {
         public Employee(Salary salary, Person person)
         {
@@ -12,9 +12,9 @@ namespace Syb.Sample.ParadiseExample
         public Salary Salary { get; private set; }
         public Person Person { get; private set; }
 
-        public virtual ITerm GMapT<U>(Func<ITerm, U> f) where U : ITerm
+        public Employee GMapT<A>(MkT<A> lf)
         {
-            return new Employee(f(Salary) as Salary, f(Person) as Person);
+            return new Employee(lf.Apply(Salary), lf.Apply(Person));
         }
     }
 }

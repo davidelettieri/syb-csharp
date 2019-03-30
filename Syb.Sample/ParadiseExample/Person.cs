@@ -2,7 +2,7 @@
 
 namespace Syb.Sample.ParadiseExample
 {
-    class Person : ITerm
+    class Person : ITerm<Person>
     {
         public Person(Address address, Name name)
         {
@@ -12,9 +12,9 @@ namespace Syb.Sample.ParadiseExample
         public Address Address { get; private set; }
         public Name Name { get; private set; }
 
-        public ITerm GMapT<U>(Func<ITerm, U> f) where U : ITerm
+        public Person GMapT<A>(MkT<A> lf)
         {
-            return new Person(f(Address) as Address, f(Name) as Name);
+            return new Person(lf.Apply(Address), lf.Apply(Name));
         }
     }
 }

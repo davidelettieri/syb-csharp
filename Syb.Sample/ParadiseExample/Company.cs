@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Syb.Sample.ParadiseExample
 {
-    class Company : ITerm
+    class Company : ITerm<Company>
     {
         public Company(Dept[] departments)
         {
@@ -11,9 +11,9 @@ namespace Syb.Sample.ParadiseExample
         }
         public Dept[] Departments { get; private set; }
 
-        public ITerm GMapT<U>(Func<ITerm, U> f) where U : ITerm
+        public Company GMapT<A>(MkT<A> lf)
         {
-            return new Company(Departments.Select(d => f(d) as Dept).ToArray());
+            return new Company(Departments.Select(d => lf.Apply(d)).ToArray());
         }
     }
 }

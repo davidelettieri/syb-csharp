@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Syb
 {
-    public interface ITerm
+    public interface ITerm<T>
     {
-        ITerm GMapT<U>(Func<ITerm, U> f)
-            where U : ITerm;
+        T GMapT<A>(MkT<A> lf);
     }
+
 }

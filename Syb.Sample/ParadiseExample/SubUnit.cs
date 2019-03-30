@@ -2,7 +2,7 @@
 
 namespace Syb.Sample.ParadiseExample
 {
-    class SubUnit : ITerm
+    class SubUnit : ITerm<SubUnit>
     {
         readonly Employee _employee;
         readonly Dept _dept;
@@ -33,13 +33,12 @@ namespace Syb.Sample.ParadiseExample
             }
         }
 
-        public ITerm GMapT<U>(Func<ITerm, U> f) where U : ITerm
+        public SubUnit GMapT<A>(MkT<A> lf)
         {
-            Func<Dept, ITerm> fd = d => new SubUnit(f(d) as Dept);
-            Func<Employee, ITerm> fe = e => new SubUnit(f(e) as Employee);
+            Func<Dept, SubUnit> fd = d => new SubUnit(lf.Apply(d));
+            Func<Employee, SubUnit> fe = e => new SubUnit(lf.Apply(e));
 
             return Match(fd, fe);
         }
-
     }
 }

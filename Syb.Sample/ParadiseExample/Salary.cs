@@ -2,7 +2,7 @@
 
 namespace Syb.Sample.ParadiseExample
 {
-    class Salary : ITerm
+    class Salary : ITerm<Salary>
     {
         public Salary(decimal value)
         {
@@ -10,9 +10,9 @@ namespace Syb.Sample.ParadiseExample
         }
         public decimal Value { get; private set; }
 
-        public ITerm GMapT<U>(Func<ITerm, U> f) where U : ITerm
+        public Salary GMapT<A>(MkT<A> lf)
         {
-            return new Salary(Value);
+            return this;
         }
     }
 }
