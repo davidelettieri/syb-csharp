@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Syb
 {
     public class MkT<A>
     {
-        protected Func<A, A> _function;
+        protected readonly Func<A, A> _function;
         internal Func<A, A> Function => _function;
 
         public MkT(Func<A, A> f)
